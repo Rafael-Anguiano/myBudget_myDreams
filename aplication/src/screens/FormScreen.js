@@ -10,7 +10,13 @@ export default class SavingForm extends React.Component {
         this.state = {
             day: undefined,
             month: undefined,
-            year: undefined
+            year: undefined,
+
+            reason: undefined,
+            amount: undefined,
+
+            //Banderas
+            y : undefined
         };
     }
     changeDay(value) {
@@ -22,31 +28,31 @@ export default class SavingForm extends React.Component {
     }
     
     changeYear(value) {
-        this.setState({ year: value})
-    }
-    
-    /*constructor(props) {
-        super(props);
-        this.state = {
-            day: '',
-            month: '',
-            year: ''
-        };
-      }
+        const val = parseInt(value, 10)
+        const hel = new Date().getFullYear()
 
-    setSelectedValue(a, param){
-        if(param == 'day'){
-            this.setState({ day: a})
+        if(val < hel && val.toString().length >= 4){
+            alert("Este año no es válido")
         }
-        if(param == 'month'){
-            this.setState({ month: a})
-        }
-        if(param == 'year'){
-            this.setState({ year: a})
+        if(val >= hel){
+            this.setState({ year: val })
         }
         
     }
-    */
+    
+    changeInput(value, param){
+        if(param == 'amount'){
+            this.setState({amount: value})
+        }
+        if(param == 'reason'){
+            this.setState({reason: value})
+        }
+    }
+
+    plan(){
+        console.log(this.state)
+    }
+
     render (){
         return (
             <View style={styles.container}>
@@ -55,14 +61,19 @@ export default class SavingForm extends React.Component {
                     <Text style={styles.question}> Why you are saving for? </Text>
                     <Item floatingLabel style={{width:'80%'}}>
                         <Label style={{padding:10, color:'black'}}> Reason: </Label>
-                        <Input/>
+                        <Input onChangeText={(text) => {this.changeInput(text, 'reason')}} />
                     </Item>
                 </View>
                 <View style={{marginVertical:25}}>
                     <Text style={styles.question}> Amount of money to get </Text>
                     <Item floatingLabel style={{width:'80%'}}>
                         <Label style={{padding:10, color:'black'}}> Wished Amount: </Label>
-                        <Input keyboardType='number-pad'/>
+                        <Input 
+                            textContentType='postalCode' 
+                            maxLength={9}  
+                            keyboardType='number-pad'
+                            onChangeText={(text) => {this.changeInput(text, 'amount')}}
+                        />
                     </Item>
                 </View>
                 <View style={{marginVertical:25}}>
@@ -114,7 +125,7 @@ export default class SavingForm extends React.Component {
                                 mode="dropdown" 
                                 selectedValue={this.state.month}
                                 placeholder="Month"
-                                placeholderStyle={{ color: "#bfc6ea" }}
+                                placeholderStyle={{ color: "#bfc6ea" }} //#bfc6ea
                                 style={{ width: "45%" }}
                                 onValueChange={this.changeMonth.bind(this)}
                             >
@@ -134,12 +145,22 @@ export default class SavingForm extends React.Component {
                             </Picker>
                             <Item floatingLabel style={{width:'20%'}}>
                                 <Label style={{padding:5, color:'black'}}> Year </Label>
-                                <Input keyboardType='number-pad' maxLength={4} onChangeText={this.changeYear.bind(this, 'year')}/>
+                                <Input keyboardType='number-pad' maxLength={5} onChangeText={this.changeYear.bind(this)}/>
                             </Item>
                         </Item>
                         
                     </View>
-                </View>  
+                </View>
+                <View>
+                    <Button 
+                        rounded 
+                        transparent 
+                        onPress={() => {this.plan()}}
+                    >
+                        <Text> MAKE A PLAN </Text>
+                    </Button>
+                </View>
+                
             </View>
         )
     }
@@ -148,20 +169,20 @@ export default class SavingForm extends React.Component {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: "#5A7DB0",
+      backgroundColor: "#5A7DB0", //#5A7DB0
       alignItems:'center',
       justifyContent:'center'
     },
     title: {
         borderRadius: 6,
         //backgroundColor: "#000000",
-        color: "#20232a",
+        color: "#FFFFFF",   //#20232a
         textAlign: "center",
         fontSize: 30,
         fontWeight: "bold"
     },
     question: {
-        color: "#20232a",
+        color: "#FFFFFF",   //#20232a
         textAlign:'center',
         fontSize: 20,
         fontWeight: 'bold'
@@ -210,4 +231,24 @@ constructor(props) {
                     <Text>
                         Date: {this.state.chosenDate.toString().substr(4, 12)}
                     </Text>
+
+
+
+
+
+
+<Item floatingLabel style={{width:'80%'}}>
+                        <Label style={{padding:10, color:'black'}}> Wished Amount: </Label>
+                        <Input textContentType='postalCode' keyboardType='number-pad'/>
+                    </Item>
+
+
+
+<TextInputMask
+                        onChangeText={(formatted, extracted) => {
+                            console.log(formatted) // +1 (123) 456-78-90
+                            console.log(extracted) // 1234567890
+                        }}
+                        mask={"$ [999999990].[99]"}
+                    />
                     */
