@@ -8,15 +8,12 @@
 
  import React from 'react';
  import { StyleSheet, View, Text } from 'react-native';
+ import SavingForm from './aplication/src/screens/FormScreen'
  
- class App extends React.Component {
+export default class App extends React.Component {
    render (){
-     return (
-       <View>
-         <Text>Hello</Text>
-       </View>
-     )
-   }
- }
- 
- export default App
+    return (
+      <SavingForm/>
+    )
+  }
+}
