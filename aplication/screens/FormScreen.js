@@ -14,9 +14,6 @@ export default class SavingForm extends React.Component {
 
             reason: undefined,
             amount: undefined,
-
-            //Banderas
-            y : undefined
         };
     }
     changeDay(value) {
@@ -30,14 +27,13 @@ export default class SavingForm extends React.Component {
     changeYear(value) {
         const val = parseInt(value, 10)
         const hel = new Date().getFullYear()
-
+        console.log(this.state.year)
         if(val < hel && val.toString().length >= 4){
             alert("Este año no es válido")
         }
         if(val >= hel){
             this.setState({ year: val })
         }
-        
     }
     
     changeInput(value, param){
@@ -145,10 +141,9 @@ export default class SavingForm extends React.Component {
                             </Picker>
                             <Item floatingLabel style={{width:'20%'}}>
                                 <Label style={{padding:5, color:'black'}}> Year </Label>
-                                <Input keyboardType='number-pad' maxLength={5} onChangeText={this.changeYear.bind(this)}/>
+                                <Input keyboardType='number-pad' maxLength={4} onChangeText={this.changeYear.bind(this)}/>
                             </Item>
                         </Item>
-                        
                     </View>
                 </View>
                 <View>
@@ -157,7 +152,7 @@ export default class SavingForm extends React.Component {
                         transparent 
                         onPress={() => {this.plan()}}
                     >
-                        <Text> MAKE A PLAN </Text>
+                        <Text style={{color:'white'}}> MAKE A PLAN </Text>
                     </Button>
                 </View>
                 
