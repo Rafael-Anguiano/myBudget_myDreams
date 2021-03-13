@@ -9,20 +9,26 @@ export default class SavingForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            day: undefined,
-            month: undefined,
-            year: undefined,
-
             reason: undefined,
             amount: undefined,
-
             isVisible: false,
             choosenDate: undefined,
+            color: 'gray',
+            day: new Date().getDate(),
+            month: new Date().getMonth() +1,
+            year: new Date().getFullYear()
 
-            color: 'gray'
         };
     }
-
+    
+    /*componentDidMount(){
+        this.setState({
+            day: new Date().getDate(), 
+            month: new Date().getMonth() +1, 
+            year: new Date().getFullYear()
+        })
+    }
+    */
     handlePicker = (datetime) => {
         this.setState({ 
             isVisible: false,
@@ -49,7 +55,7 @@ export default class SavingForm extends React.Component {
     }
 
     plan(){
-        console.log(this.state)
+        this.props.setParams( this.state.reason, this.state.amount, this.state.day, this.state.month, this.state.year )
     }
 
     render (){
@@ -85,7 +91,7 @@ export default class SavingForm extends React.Component {
                     <Button 
                         rounded 
                         info
-                        onPress={() => {this.plan()}}
+                        onPress={() => this.props.setParams( this.state.reason, this.state.amount, this.state.day, this.state.month, this.state.year )}
                     >
                         <Text style={{color:'white', fontSize:15}}> MAKE A PLAN </Text>
                     </Button>
@@ -125,62 +131,3 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     }
 });
-/*
-
-<Item floatingLabel style={{width:'30%'}}>
-                            <Label style={{padding:10}}> YYYY </Label>
-                            <Input/>
-                        </Item>
-
-
-
-
-constructor(props) {
-        super(props);
-        this.state = { chosenDate: new Date() };
-        this.setDate = this.setDate.bind(this);
-    }
-    
-    setDate(newDate) {
-        this.setState({ chosenDate: newDate });
-    }
-
-
-<DatePicker
-                        value={ new Date(2021, 4, 4) }
-                        defaultDate={new Date(2021, 4, 4)}
-                        locale={"en"}
-                        timeZoneOffsetInMinutes={undefined}
-                        modalTransparent={false}
-                        animationType={"fade"}
-                        androidMode={"calendar"}
-                        placeHolderText="Select date"
-                        textStyle={{ color: "green" }}
-                        placeHolderTextStyle={{ color: "#d3d3d3" }}
-                        onDateChange={this.setDate}
-                        disabled={false}
-                    />
-                    <Text>
-                        Date: {this.state.chosenDate.toString().substr(4, 12)}
-                    </Text>
-
-
-
-
-
-
-<Item floatingLabel style={{width:'80%'}}>
-                        <Label style={{padding:10, color:'black'}}> Wished Amount: </Label>
-                        <Input textContentType='postalCode' keyboardType='number-pad'/>
-                    </Item>
-
-
-
-<TextInputMask
-                        onChangeText={(formatted, extracted) => {
-                            console.log(formatted) // +1 (123) 456-78-90
-                            console.log(extracted) // 1234567890
-                        }}
-                        mask={"$ [999999990].[99]"}
-                    />
-                    */
