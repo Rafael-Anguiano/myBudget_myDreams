@@ -9,95 +9,41 @@ export default class SavingPlan extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            day: undefined,
-            month: undefined,
-            year: undefined,
+            strtDay: undefined,
+            strtMonth: undefined,
+            strtYear: undefined,
 
             reason: undefined,
             amount: undefined,
 
             isVisible: false,
             choosenDate: undefined,
-
-            color: 'gray'
         };
     }
 
-    handlePicker = (datetime) => {
-        this.setState({ 
-            isVisible: false,
-            choosenDate: moment(datetime).format('MM/DD/YYYY'),
-            color:'black'
+    componentDidMount(){
+        this.setState({
+            strtDay: this.props.route.params.strtDay,
+            strtMonth: this.props.route.params.strtMonth,
+            strtYear: this.props.route.params.strtYear,
+            reason: this.props.route.params.reason,
+            amount: this.props.route.params.amount,
+            choosenDate: this.props.route.params.choosenDate,
         })
     }
 
-    hidePicker = () => {
-        this.setState({ isVisible: false })
-    }
-
-    showPicker = () => {
-        this.setState({ isVisible: true })
-    }
     
-    changeInput(value, param){
-        if(param == 'amount'){
-            this.setState({amount: value})
-        }
-        if(param == 'reason'){
-            this.setState({reason: value})
-        }
-    }
-
-    plan(){
-        console.log(this.state)
-    }
 
     render (){
         return (
             <View style={styles.container}>
-                <Text style={styles.title}> Saving Plan </Text>
-                <View style={{marginVertical:25}}>
-                    <Text style={styles.question}> Why you are saving for? </Text>
-                    <Item floatingLabel style={{width:'80%'}}>
-                        <Label style={{padding:10, color:'black'}}> Reason: </Label>
-                        <Input onChangeText={(text) => {this.changeInput(text, 'reason')}} />
-                    </Item>
-                </View>
-                <View style={{marginVertical:25}}>
-                    <Text style={styles.question}> Amount of money to get </Text>
-                    <Item floatingLabel style={{width:'80%'}}>
-                        <Label style={{padding:10, color:'black'}}> Wished Amount: </Label>
-                        <Input 
-                            textContentType='postalCode' 
-                            maxLength={9}  
-                            keyboardType='number-pad'
-                            onChangeText={(text) => {this.changeInput(text, 'amount')}}
-                        />
-                    </Item>
-                </View>
-                <View style={{marginVertical:25}}>
-                    <Text style={styles.question}> Due Date </Text>
-                    <Button transparent rounded onPress={this.showPicker}>
-                        <Text style={{color: this.state.color, fontSize:15}}>{this.state.choosenDate ? this.state.choosenDate : "Select a Date" }</Text>
-                    </Button>
-                </View>
-                <View>
-                    <Button 
-                        rounded 
-                        info
-                        onPress={() => {this.plan()}}
-                    >
-                        <Text style={{color:'white', fontSize:15}}> MAKE A PLAN </Text>
-                    </Button>
-                </View>
-
-                <DateTimePickerModal
-                    isVisible={this.state.isVisible}
-                    mode="date"
-                    onConfirm={this.handlePicker}
-                    onCancel={this.hidePicker}
-                    minimumDate={new Date()}
-                />
+                <Text style={styles.question}> Saving Plan </Text>
+                <Text style={styles.question}> {this.state.strtDay} </Text>
+                <Text style={styles.question}> {this.state.strtMonth} </Text>
+                <Text style={styles.question}> {this.state.strtYear} </Text>
+                <Text style={styles.question}> {this.state.reason} </Text>
+                <Text style={styles.question}> {this.state.amount} </Text>
+                <Text style={styles.question}> {this.state.choosenDate} </Text>
             </View>
         )
     }

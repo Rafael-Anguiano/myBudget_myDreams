@@ -21,14 +21,14 @@ export default class SavingForm extends React.Component {
         };
     }
     
-    /*componentDidMount(){
+    componentDidMount(){
         this.setState({
             day: new Date().getDate(), 
             month: new Date().getMonth() +1, 
             year: new Date().getFullYear()
         })
     }
-    */
+    
     handlePicker = (datetime) => {
         this.setState({ 
             isVisible: false,
@@ -55,7 +55,15 @@ export default class SavingForm extends React.Component {
     }
 
     plan(){
-        this.props.setParams( this.state.reason, this.state.amount, this.state.day, this.state.month, this.state.year )
+        const {navigation} = this.props
+        navigation.navigate('Plan', { 
+            reason:this.state.reason, 
+            amount:this.state.amount,
+            strtDay: this.state.day,
+            strtMonth: this.state.month,
+            strtYear: this.state.year,
+            choosenDate: this.state.choosenDate 
+        })
     }
 
     render (){
@@ -91,7 +99,7 @@ export default class SavingForm extends React.Component {
                     <Button 
                         rounded 
                         info
-                        onPress={() => this.props.setParams( this.state.reason, this.state.amount, this.state.day, this.state.month, this.state.year )}
+                        onPress={() => {this.plan()}}
                     >
                         <Text style={{color:'white', fontSize:15}}> MAKE A PLAN </Text>
                     </Button>
