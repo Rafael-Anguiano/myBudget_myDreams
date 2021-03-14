@@ -36,9 +36,9 @@ export default class SavingPlan extends React.Component {
     }
 
     setPlan(){
-        const strtDay = this.state.strtDay
-        const strtMonth = this.state.strtMonth
-        const strtYear = this.state.strtYear
+        let strtDay = this.state.strtDay
+        let strtMonth = this.state.strtMonth
+        let strtYear = this.state.strtYear
         
         let array = this.state.choosenDate.split(["/"])
 
@@ -66,7 +66,7 @@ export default class SavingPlan extends React.Component {
 
         // First Step
         if(term == 'short'){
-            this.sameMonth(strtDay, strtMonth, strtYear, DueDay, DueMonth, DueYear)
+            this.sameMonth(strtDay, DueDay, DueMonth)
         }else{
             // First Step
             if(strtDay <= 15){
@@ -74,12 +74,13 @@ export default class SavingPlan extends React.Component {
             }else{
                 this.setState({ fortnights: + 1})
             }
-
             //Second Step
+            strtMonth = strtMonth +1
+            this.secondStep(strtDay, strtMonth, strtYear, DueDay, DueMonth, DueYear)
         }        
     }
     
-    sameMonth( strtDay, strtMonth, strtYear, dueDay, dueMonth, dueYear ){
+    sameMonth(strtDay, dueDay, dueMonth){
         // February
         if( dueMonth == 2 ){
             if( dueDay < 28 ){
@@ -129,6 +130,31 @@ export default class SavingPlan extends React.Component {
                 }
             }
         }
+    }
+
+    secondStep(strtDay, strtMonth, strtYear, dueDay, dueMonth, dueYear){
+        let flagMonth = strtMonth
+        
+        while(strtYear <= dueYear){
+            if(strtYear != dueYear){ //Si es año diferente
+               if(strtYear == this.state.strtYear){
+
+               } 
+            }else{  //Si es el mismo año
+                while(strtMonth<= dueMonth){ 
+                    if(strtMonth != dueMonth){ //Si son meses diferentes
+                        this.setState({ fortnights: +2})
+                    }else{  //Si es el mismo mes
+                        //...................................................Aquí puede que entre sameMonth()
+                    }
+                    strtMonth++
+                }
+            }
+
+            strtYear++
+        }
+
+        console.log("strtMonth", strtMonth)
     }
 
     render (){
