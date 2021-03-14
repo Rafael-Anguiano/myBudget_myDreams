@@ -68,22 +68,29 @@ export default class SavingPlan extends React.Component {
         if(term == 'short'){
             this.sameMonth(strtDay, strtMonth, strtYear, DueDay, DueMonth, DueYear)
         }else{
+            // First Step
             if(strtDay <= 15){
                 this.setState({ fortnights: +2 })
             }else{
                 this.setState({ fortnights: + 1})
-            } 
-        }
-        
+            }
+
+            //Second Step
+        }        
     }
     
     sameMonth( strtDay, strtMonth, strtYear, dueDay, dueMonth, dueYear ){
         // February
-        if(dueMonth == 2){
-            if(dueDay < 28){
+        if( dueMonth == 2 ){
+            if( dueDay < 28 ){
                 this.setState({ fortnights: +1})
             }else{
-                this.setState({ fortnights: +2})
+                if( 15 < strtDay ){
+                    this.setState({ fortnights: +1})
+                }else{
+                    this.setState({ fortnights: +2})
+                }
+                
             }
         }
         // 30 Days
@@ -95,7 +102,11 @@ export default class SavingPlan extends React.Component {
             if(dueDay < 30){
                 this.setState({ fortnights: +1})
             }else{
-                this.setState({ fortnights: +2})
+                if( 15 < strtDay ){
+                    this.setState({ fortnights: +1})
+                }else{
+                    this.setState({ fortnights: +2})
+                }
             }
         }
 
@@ -111,7 +122,11 @@ export default class SavingPlan extends React.Component {
             if(dueDay < 31){
                 this.setState({ fortnights: +1})
             }else{
-                this.setState({ fortnights: +2})
+                if( 15 < strtDay ){
+                    this.setState({ fortnights: +1})
+                }else{
+                    this.setState({ fortnights: +2})
+                }
             }
         }
     }
