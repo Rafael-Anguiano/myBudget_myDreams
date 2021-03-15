@@ -85,13 +85,17 @@ export default class SavingPlan extends React.Component {
     sameMonth(strtDay, dueDay, dueMonth){
         // February
         if( dueMonth == 2 ){
-            if( dueDay < 28 && 15 <= dueDay ){
-                this.setState({ fortnights: this.state.fortnights +1})
+            if(dueDay < 15){
+                this.setState({fortnights: this.state.fortnights +0 })
             }else{
-                if( 15 < strtDay ){
+                if( dueDay < 28 ){
                     this.setState({ fortnights: this.state.fortnights +1})
                 }else{
-                    this.setState({ fortnights: this.state.fortnights +2})
+                    if( 15 < strtDay ){
+                        this.setState({ fortnights: this.state.fortnights +1})
+                    }else{
+                        this.setState({ fortnights: this.state.fortnights +2})
+                    }
                 }
             }
         }
@@ -99,13 +103,18 @@ export default class SavingPlan extends React.Component {
         if( dueMonth == 4 || dueMonth == 6 || 
             dueMonth == 9 || dueMonth == 11 
         ){
-            if(dueDay < 30){
-                this.setState({ fortnights: this.state.fortnights +1})
+
+            if(dueDay < 15){
+                this.setState({fortnights: this.state.fortnights +0 })
             }else{
-                if( 15 < strtDay ){
+                if(dueDay < 30){
                     this.setState({ fortnights: this.state.fortnights +1})
                 }else{
-                    this.setState({ fortnights: this.state.fortnights +2})
+                    if( 15 < strtDay ){
+                        this.setState({ fortnights: this.state.fortnights +1})
+                    }else{
+                        this.setState({ fortnights: this.state.fortnights +2})
+                    }
                 }
             }
         }
@@ -115,13 +124,17 @@ export default class SavingPlan extends React.Component {
             dueMonth == 8 || dueMonth == 10 ||
             dueMonth == 12 
         ){
-            if(dueDay < 31){
-                this.setState({ fortnights: this.state.fortnights +1})
+            if(dueDay < 15){
+                this.setState({fortnights: this.state.fortnights +0 })
             }else{
-                if( 15 < strtDay ){
+                if(dueDay < 31){
                     this.setState({ fortnights: this.state.fortnights +1})
                 }else{
-                    this.setState({ fortnights: this.state.fortnights +2})
+                    if( 15 < strtDay ){
+                        this.setState({ fortnights: this.state.fortnights +1})
+                    }else{
+                        this.setState({ fortnights: this.state.fortnights +2})
+                    }
                 }
             }
         }
