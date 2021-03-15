@@ -85,7 +85,7 @@ export default class SavingPlan extends React.Component {
     sameMonth(strtDay, dueDay, dueMonth){
         // February
         if( dueMonth == 2 ){
-            if( dueDay < 28 ){
+            if( dueDay < 28 && 15 <= dueDay ){
                 this.setState({ fortnights: this.state.fortnights +1})
             }else{
                 if( 15 < strtDay ){
@@ -93,14 +93,11 @@ export default class SavingPlan extends React.Component {
                 }else{
                     this.setState({ fortnights: this.state.fortnights +2})
                 }
-                
             }
         }
         // 30 Days
-        if( dueMonth == 4 || 
-            dueMonth == 6 || 
-            dueMonth == 9 || 
-            dueMonth == 11 
+        if( dueMonth == 4 || dueMonth == 6 || 
+            dueMonth == 9 || dueMonth == 11 
         ){
             if(dueDay < 30){
                 this.setState({ fortnights: this.state.fortnights +1})
@@ -112,14 +109,10 @@ export default class SavingPlan extends React.Component {
                 }
             }
         }
-
         // 31 Days
-        if( dueMonth == 1 ||
-            dueMonth == 3 ||
-            dueMonth == 5 ||
-            dueMonth == 7 || 
-            dueMonth == 8 || 
-            dueMonth == 10 ||
+        if( dueMonth == 1 || dueMonth == 3 ||
+            dueMonth == 5 || dueMonth == 7 || 
+            dueMonth == 8 || dueMonth == 10 ||
             dueMonth == 12 
         ){
             if(dueDay < 31){
@@ -141,10 +134,9 @@ export default class SavingPlan extends React.Component {
                     this.setState({fortnights: this.state.fortnights +2})
                 }
                 if( strtMonth == dueMonth ){
-                    this.sameMonth(0, dueDay, dueMonth)
+                    this.sameMonth(1, dueDay, dueMonth)
                     this.setState({calculated: true})
                 }
-
                 strtMonth++
             }
         }
@@ -157,10 +149,9 @@ export default class SavingPlan extends React.Component {
                             this.setState({fortnights: this.state.fortnights +2})
                         }
                         if( strtMonth == dueMonth ){
-                            this.sameMonth(0, dueDay, dueMonth)
+                            this.sameMonth(1, dueDay, dueMonth)
                             this.setState({calculated: true})
                         }
-        
                         strtMonth++
                     }
                 }
