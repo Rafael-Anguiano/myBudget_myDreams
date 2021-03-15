@@ -11,7 +11,7 @@ export default class SavingPlan extends React.Component {
             reason: undefined,
             amount: undefined,
             choosenDate: undefined,
-            fortnights: 0,
+            
             //StrtDate
             strtDay: undefined,
             strtMonth: undefined,
@@ -20,6 +20,9 @@ export default class SavingPlan extends React.Component {
             dueDay: undefined,
             dueMonth: undefined,
             dueYear: undefined,
+            // Per Fortnight
+            fortnights: 0,
+            biweeklyPay: undefined,
             calculated: false
         };
     }
@@ -34,6 +37,8 @@ export default class SavingPlan extends React.Component {
             choosenDate: this.props.route.params.choosenDate
         })
         this.setPlan()
+
+        this.payments()
     }
 
     setPlan(){
@@ -187,8 +192,15 @@ export default class SavingPlan extends React.Component {
 
     }
 
+    payments(){
+        amount = Number(this.state.amount)
+        pays = amount/this.state.fortnights
+
+        this.setState({biweeklyPay: pays})
+    }
+
     render (){
-        const {strtDay, strtMonth, strtYear, reason, amount, fortnights} = this.state
+        const {strtDay, strtMonth, strtYear, reason, amount, fortnights, biweeklyPay} = this.state
 
         return (
             <View style={styles.container}>
@@ -199,6 +211,8 @@ export default class SavingPlan extends React.Component {
                 <Text style={styles.question}> {reason} </Text>
                 <Text style={styles.question}> {amount} </Text>
                 <Text style={styles.question}> {fortnights} </Text>
+                <Text style={styles.question}> {biweeklyPay} </Text>
+
             </View>
         )
     }
