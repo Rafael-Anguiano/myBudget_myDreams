@@ -2,6 +2,7 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Text, Button, Item, Input, Label } from 'native-base'
+import { months } from 'moment';
 
 export default class SavingPlan extends React.Component {
     constructor(props) {
@@ -70,13 +71,14 @@ export default class SavingPlan extends React.Component {
         }else{
             // First Step
             if(strtDay <= 15){
-                this.setState({ fortnights: +2 })
+                this.setState({ fortnights: this.state.fortnights +2 })
             }else{
-                this.setState({ fortnights: + 1})
+                this.setState({ fortnights: this.state.fortnights + 1})
             }
             //Second Step
             strtMonth = strtMonth +1
-            this.secondStep(strtDay, strtMonth, strtYear, DueDay, DueMonth, DueYear)
+            
+            this.secondStep(strtDay, strtMonth, strtYear, DueDay, DueMonth, DueYear, term)
         }        
     }
     
@@ -84,12 +86,12 @@ export default class SavingPlan extends React.Component {
         // February
         if( dueMonth == 2 ){
             if( dueDay < 28 ){
-                this.setState({ fortnights: +1})
+                this.setState({ fortnights: this.state.fortnights +1})
             }else{
                 if( 15 < strtDay ){
-                    this.setState({ fortnights: +1})
+                    this.setState({ fortnights: this.state.fortnights +1})
                 }else{
-                    this.setState({ fortnights: +2})
+                    this.setState({ fortnights: this.state.fortnights +2})
                 }
                 
             }
@@ -101,12 +103,12 @@ export default class SavingPlan extends React.Component {
             dueMonth == 11 
         ){
             if(dueDay < 30){
-                this.setState({ fortnights: +1})
+                this.setState({ fortnights: this.state.fortnights +1})
             }else{
                 if( 15 < strtDay ){
-                    this.setState({ fortnights: +1})
+                    this.setState({ fortnights: this.state.fortnights +1})
                 }else{
-                    this.setState({ fortnights: +2})
+                    this.setState({ fortnights: this.state.fortnights +2})
                 }
             }
         }
@@ -121,40 +123,64 @@ export default class SavingPlan extends React.Component {
             dueMonth == 12 
         ){
             if(dueDay < 31){
-                this.setState({ fortnights: +1})
+                this.setState({ fortnights: this.state.fortnights +1})
             }else{
                 if( 15 < strtDay ){
-                    this.setState({ fortnights: +1})
+                    this.setState({ fortnights: this.state.fortnights +1})
                 }else{
-                    this.setState({ fortnights: +2})
+                    this.setState({ fortnights: this.state.fortnights +2})
                 }
             }
         }
     }
 
-    secondStep(strtDay, strtMonth, strtYear, dueDay, dueMonth, dueYear){
-        let flagMonth = strtMonth
-        
-        while(strtYear <= dueYear){
-            if(strtYear != dueYear){ //Si es año diferente
-               if(strtYear == this.state.strtYear){
-
-               } 
-            }else{  //Si es el mismo año
-                while(strtMonth<= dueMonth){ 
-                    if(strtMonth != dueMonth){ //Si son meses diferentes
-                        this.setState({ fortnights: +2})
-                    }else{  //Si es el mismo mes
-                        //...................................................Aquí puede que entre sameMonth()
-                    }
-                    strtMonth++
+    secondStep(strtDay, strtMonth, strtYear, dueDay, dueMonth, dueYear, term){
+        if(term == 'medium'){
+            while(strtMonth <= dueMonth){
+                if(strtMonth<dueMonth){
+                    this.setState({fortnights: this.state.fortnights +2})
                 }
-            }
+                if( strtMonth == dueMonth ){
+                    this.sameMonth(0, dueDay, dueMonth)
+                    this.setState({calculated: true})
+                }
 
-            strtYear++
+                strtMonth++
+            }
         }
 
-        console.log("strtMonth", strtMonth)
+        if(term == 'long'){
+            while(strtYear <= dueYear){
+                if(strtYear == dueYear){
+                    while(strtMonth <= dueMonth){
+                        if(strtMonth<dueMonth){
+                            this.setState({fortnights: this.state.fortnights +2})
+                        }
+                        if( strtMonth == dueMonth ){
+                            this.sameMonth(0, dueDay, dueMonth)
+                            this.setState({calculated: true})
+                        }
+        
+                        strtMonth++
+                    }
+                }
+                
+                if(strtYear < dueYear){
+                    while(strtMonth < 13){
+                        this.setState({ fortnights: this.state.fortnights +2 })
+                        strtMonth++
+                    }
+                }
+
+                if( dueMonth < strtMonth ){
+                    strtMonth = 1
+                }
+
+                strtYear++
+            }
+
+        }
+
     }
 
     render (){
