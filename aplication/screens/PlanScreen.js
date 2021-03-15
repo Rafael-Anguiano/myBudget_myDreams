@@ -11,7 +11,6 @@ export default class SavingPlan extends React.Component {
             reason: undefined,
             amount: undefined,
             choosenDate: undefined,
-            
             //StrtDate
             strtDay: undefined,
             strtMonth: undefined,
@@ -193,7 +192,8 @@ export default class SavingPlan extends React.Component {
     }
 
     payments(){
-        amount = Number(this.state.amount)
+        var justAmount =  this.state.amount.replace('$','');
+        amount = Number(justAmount)
         pays = amount/this.state.fortnights
 
         this.setState({biweeklyPay: pays})
