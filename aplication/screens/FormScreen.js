@@ -16,8 +16,7 @@ export default class SavingForm extends React.Component {
             color: 'gray',
             day: new Date().getDate(),
             month: new Date().getMonth() +1,
-            year: new Date().getFullYear()
-
+            year: new Date().getFullYear(),
         };
     }
     
@@ -45,7 +44,7 @@ export default class SavingForm extends React.Component {
         this.setState({ isVisible: true })
     }
     
-    changeInput(value, param){
+    changeInput( value, param ){
         if(param == 'amount'){
             this.setState({amount: value})
         }
@@ -66,6 +65,11 @@ export default class SavingForm extends React.Component {
         })
     }
 
+    async valueset( a ){
+        await this.setState({value: a })
+        console.log(this.state.value)
+    }
+
     render (){
         return (
             <View style={styles.container}>
@@ -83,7 +87,7 @@ export default class SavingForm extends React.Component {
                         <Label style={{padding:10, color:'black'}}> Wished Amount: </Label>
                         <Input 
                             textContentType='postalCode' 
-                            maxLength={9}  
+                            maxLength={9} 
                             keyboardType='number-pad'
                             onChangeText={(text) => {this.changeInput(text, 'amount')}}
                         />
@@ -139,3 +143,18 @@ const styles = StyleSheet.create({
         fontWeight: 'bold'
     }
 });
+
+/*
+
+                    <CurrencyInput
+                        value={this.state.value}
+                        onChangeValue={this.valueset}
+                        unit="$"
+                        delimiter=","
+                        separator="."
+                        precision={2}
+                        onChangeText={(formattedValue) => {
+                            console.log(formattedValue); // $2,310.46
+                        }}
+                    />
+*/

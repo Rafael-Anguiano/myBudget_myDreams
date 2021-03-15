@@ -212,7 +212,6 @@ export default class SavingPlan extends React.Component {
                 <Text style={styles.question}> {amount} </Text>
                 <Text style={styles.question}> {fortnights} </Text>
                 <Text style={styles.question}> {biweeklyPay} </Text>
-
             </View>
         )
     }
