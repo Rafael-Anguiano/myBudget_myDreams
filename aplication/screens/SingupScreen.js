@@ -1,8 +1,5 @@
 import React, {useContext, useState} from 'react';
 import {View, TouchableOpacity, Platform, StyleSheet} from 'react-native';
-import FormInput from '../components/FormInput';
-import FormButton from '../components/FormButton';
-import SocialButton from '../components/SocialButton';
 import {AuthContext} from '../Auth/AuthProvider';
 import { Text, Button, Item, Input, Label } from 'native-base'
 
