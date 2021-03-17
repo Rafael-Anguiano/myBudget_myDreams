@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "108872851331",
+    "project_id": "mybudget-mydreams",
+    "storage_bucket": "mybudget-mydreams.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:108872851331:android:66f665642b80c61a5e60b6",
+        "android_client_info": {
+          "package_name": "com.mybudgetmydreams"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "108872851331-oboun5a4s1m51pfq338af08ddt3vv1pm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPalk3Lsk2sgh8U_IVvZvgq1T2ME0jhig"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "108872851331-oboun5a4s1m51pfq338af08ddt3vv1pm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
