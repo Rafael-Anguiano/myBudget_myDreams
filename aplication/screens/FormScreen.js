@@ -73,7 +73,9 @@ export default class SavingForm extends React.Component {
                 <View style={{marginVertical:25}}>
                     <Item floatingLabel style={{width:'80%'}}>
                         <Label style={{padding:13, color:'white'}}> Reason: </Label>
-                        <Input onChangeText={(text) => {this.changeInput(text, 'reason')}} />
+                        <Input onChangeText={(text) => {this.changeInput(text, 'reason')}}>
+                            <Text style={{color:'white'}}> </Text>
+                        </Input>
                     </Item>
                 </View>
                 
