@@ -84,7 +84,7 @@ export default class SavingForm extends React.Component {
                         <Label style={{padding:13, color:'white'}}> Wished Amount: </Label>
                         <Input 
                             textContentType='postalCode' 
-                            maxLength={9}  
+                            maxLength={11}  
                             keyboardType='number-pad'
                             onChangeText={(text) => {this.changeInput(text, 'amount')}}
                         >
