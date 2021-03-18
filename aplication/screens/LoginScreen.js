@@ -18,7 +18,7 @@ const LoginScreen = ({navigation}) => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.text}>RN Social App</Text>
+      <Text style={styles.text}>My Budget - My Dreams</Text>
       
       <View style={{marginVertical:25}}>
         <Item floatingLabel style={{width:'80%'}}>
@@ -69,7 +69,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
-    paddingTop: 50
+    flex:1,
+    paddingTop: 50,
+    backgroundColor:'#596997'
   },
   logo: {
     height: 150,
@@ -81,6 +83,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
     marginBottom: 10,
     color: '#051d5f',
+    fontWeight:'bold'
   },
   navButton: {
     marginTop: 15,
@@ -91,7 +94,8 @@ const styles = StyleSheet.create({
   navButtonText: {
     fontSize: 18,
     fontWeight: '500',
-    color: '#2e64e5',
+
+    color: "black",//'#2e64e5',
     fontFamily: 'Lato-Regular',
   },
   title: {

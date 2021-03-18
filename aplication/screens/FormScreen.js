@@ -20,8 +20,8 @@ export default class SavingForm extends React.Component {
         };
     }
     
-    componentDidMount(){
-        this.setState({
+    async componentDidMount(){
+        await this.setState({
             day: new Date().getDate(), 
             month: new Date().getMonth() +1, 
             year: new Date().getFullYear()
@@ -32,7 +32,7 @@ export default class SavingForm extends React.Component {
         this.setState({ 
             isVisible: false,
             choosenDate: moment(datetime).format('MM/DD/YYYY'),
-            color:'black'
+            color:'white'
         })
     }
 
@@ -69,38 +69,40 @@ export default class SavingForm extends React.Component {
         return (
             <View style={styles.container}>
                 <Text style={styles.title}> Saving Form </Text>
+                
                 <View style={{marginVertical:25}}>
-                    <Text style={styles.question}> Why you are saving for? </Text>
                     <Item floatingLabel style={{width:'80%'}}>
-                        <Label style={{padding:10, color:'black'}}> Reason: </Label>
+                        <Label style={{padding:13, color:'white'}}> Reason: </Label>
                         <Input onChangeText={(text) => {this.changeInput(text, 'reason')}} />
                     </Item>
                 </View>
+                
                 <View style={{marginVertical:25}}>
-                    <Text style={styles.question}> Amount of money to get </Text>
                     <Item floatingLabel style={{width:'80%'}}>
-                        <Label style={{padding:10, color:'black'}}> Wished Amount: </Label>
+                        <Label style={{padding:13, color:'white'}}> Wished Amount: </Label>
                         <Input 
                             textContentType='postalCode' 
                             maxLength={9}  
                             keyboardType='number-pad'
                             onChangeText={(text) => {this.changeInput(text, 'amount')}}
                         >
-                            <Text>$ </Text>
+                            <Text style={{color:'white'}}>$ </Text>
                         </Input>
                     </Item>
                 </View>
+                
                 <View style={{marginVertical:25}}>
-                    <Text style={styles.question}> Due Date </Text>
-                    <Button transparent rounded onPress={this.showPicker}>
-                        <Text style={{color: this.state.color, fontSize:15}}>{this.state.choosenDate ? this.state.choosenDate : "Select a Date" }</Text>
+                    <Button bordered rounded light onPress={this.showPicker}>
+                        <Text style={{color: this.state.color, fontSize:15, fontWeight:'bold'}}>{this.state.choosenDate ? this.state.choosenDate : "Select your Due Date" }</Text>
                     </Button>
                 </View>
+
                 <View>
                     <Button 
                         rounded 
                         info
                         onPress={() => {this.plan()}}
+                        style={{backgroundColor: '#051d5f'}}
                     >
                         <Text style={{color:'white', fontSize:15}}> MAKE A PLAN </Text>
                     </Button>
@@ -128,7 +130,7 @@ const styles = StyleSheet.create({
     title: {
         borderRadius: 6,
         //backgroundColor: "#000000",
-        color: "#FFFFFF",   //#20232a
+        color: "#051d5f",   //#20232a
         textAlign: "center",
         fontSize: 30,
         fontWeight: "bold"

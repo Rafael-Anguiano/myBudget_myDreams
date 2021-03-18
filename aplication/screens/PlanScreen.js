@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, StatusBar } from 'react-native';
 import { Text, Button, Item, Input, Label } from 'native-base'
 import { months } from 'moment';
 
@@ -204,7 +204,7 @@ export default class SavingPlan extends React.Component {
 
         return (
             <View style={styles.container}>
-                <Text style={styles.question}> Saving Plan </Text>
+                <Text style={styles.title}> Saving Plan </Text>
                 <Text style={styles.question}> {strtDay} </Text>
                 <Text style={styles.question}> {strtMonth} </Text>
                 <Text style={styles.question}> {strtYear} </Text>
@@ -226,8 +226,7 @@ const styles = StyleSheet.create({
     },
     title: {
         borderRadius: 6,
-        //backgroundColor: "#000000",
-        color: "#FFFFFF",   //#20232a
+        color: "#051d5f",   //#20232a
         textAlign: "center",
         fontSize: 30,
         fontWeight: "bold"
