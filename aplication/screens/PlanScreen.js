@@ -1,8 +1,7 @@
 
 import React from 'react';
-import { StyleSheet, View, StatusBar } from 'react-native';
-import { Text, Button, Item, Input, Label } from 'native-base'
-import { months } from 'moment';
+import { StyleSheet, View} from 'react-native';
+import { Text } from 'native-base'
 
 export default class SavingPlan extends React.Component {
     constructor(props) {
