@@ -51,8 +51,7 @@ export default class SavingForm extends React.Component {
     
     changeInput(value, param){
         if(param == 'amount'){
-            let str = value.replace(/[^0-9]/g, "")
-            console.log("str:", str)
+            let str = value.replace(/[^0-9.]/g, "")
             this.setState({ amount: str, amountVal: str, errorAmount: false })
         }
         if(param == 'reason'){
@@ -95,7 +94,7 @@ export default class SavingForm extends React.Component {
         return (
             <View style={styles.container}>
                 <Text style={styles.title}> Saving Form </Text>
-                
+
                 <View style={{marginVertical:25}}>
                     <Item floatingLabel style={this.state.errorReason ? styles.emptyField : styles.field}>
                         <Label style={{padding:13, color:'white'}}> Reason: </Label>
@@ -136,8 +135,7 @@ export default class SavingForm extends React.Component {
 
                 <View>
                     <Button 
-                        rounded 
-                        info
+                        rounded
                         onPress={() => {this.plan()}}
                         style={{backgroundColor: '#051d5f'}}
                     >
