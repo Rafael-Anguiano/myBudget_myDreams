@@ -14,9 +14,9 @@ export default class SavingForm extends React.Component {
             isVisible: false,
             choosenDate: undefined,
             color: 'white',
-            day: new Date().getDate(),
-            month: new Date().getMonth() +1,
-            year: new Date().getFullYear(),
+            strtDay: new Date().getDate(),
+            strtMonth: new Date().getMonth() +1,
+            strtYear: new Date().getFullYear(),
             errorReason: false,
             errorAmount: false,
             errorDate: false
@@ -35,7 +35,8 @@ export default class SavingForm extends React.Component {
         this.setState({ 
             isVisible: false,
             choosenDate: moment(datetime).format('MM/DD/YYYY'),
-            color:'white'
+            color:'white',
+            errorDate: false
         })
     }
 
@@ -49,10 +50,10 @@ export default class SavingForm extends React.Component {
     
     changeInput(value, param){
         if(param == 'amount'){
-            this.setState({amount: value})
+            this.setState({ amount: value, errorAmount: false })
         }
         if(param == 'reason'){
-            this.setState({reason: value})
+            this.setState({ reason: value, errorReason: false })
         }
     }
 
@@ -81,11 +82,10 @@ export default class SavingForm extends React.Component {
             if( !this.state.amount ){
                 this.setState({errorAmount: true})
             }
-            if( !this.state.strtMonth ){
+            if( !this.state.choosenDate ){
                 this.setState({errorDate: true})
             }
         }
-        
     }
 
     render (){
