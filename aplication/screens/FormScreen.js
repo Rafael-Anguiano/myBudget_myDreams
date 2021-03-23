@@ -100,6 +100,7 @@ export default class SavingForm extends React.Component {
                             <Text style={{color:'white'}}> </Text>
                         </Input>
                     </Item>
+                    { this.state.errorReason && <Text style={{color:'#9A393B', fontWeight:'bold'}}> Write a Reason to Continue </Text> }
                 </View>
                 
                 <View style={{ marginVertical:25 }}>
@@ -109,12 +110,12 @@ export default class SavingForm extends React.Component {
                             textContentType='postalCode' 
                             maxLength={11}  
                             keyboardType='number-pad'
-                            style={{borderColor:'red'}}
                             onChangeText={(text) => {this.changeInput(text, 'amount')}}
                         >
                             <Text style={{color:'white'}}>$ </Text>
                         </Input>
                     </Item>
+                    { this.state.errorAmount && <Text style={{color:'#9A393B', fontWeight:'bold'}}> Enter your Goal Amount </Text> }
                 </View>
                 
                 <View style={{marginVertical:25}}>
@@ -127,6 +128,7 @@ export default class SavingForm extends React.Component {
                     >
                         <Text style={{color: this.state.color, fontSize:15, fontWeight:'bold'}}>{this.state.choosenDate ? this.state.choosenDate : "Select your Due Date" }</Text>
                     </Button>
+                    { this.state.errorDate && <Text style={{color:'#9A393B', fontWeight:'bold', alignSelf:'center'}}> Choose a date </Text> }
                 </View>
 
                 <View>
@@ -175,18 +177,16 @@ const styles = StyleSheet.create({
     },
     emptyField: {
         width:'80%',
-        borderColor:'red'
+        borderColor:'#9A393B'
     },
     field: {
         width:'80%',
         borderColor:'white'
     },
     emptyButton: {
-        borderColor:'red'
+        borderColor:'#9A393B'
     },
     Datebutton: {
         borderColor:'white'
     }
 });
-
-//{marginVertical:25}

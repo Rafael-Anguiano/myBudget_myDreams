@@ -203,7 +203,7 @@ export default class SavingPlan extends React.Component {
 
         return (
             <View style={styles.container}>
-                <Text style={styles.title}> Saving Plan </Text>
+                <Text style={styles.title}> New Plan: </Text>
                 <Text style={styles.question}> {strtDay} </Text>
                 <Text style={styles.question}> {strtMonth} </Text>
                 <Text style={styles.question}> {strtYear} </Text>
@@ -211,6 +211,9 @@ export default class SavingPlan extends React.Component {
                 <Text style={styles.question}> {amount} </Text>
                 <Text style={styles.question}> {fortnights} </Text>
                 <Text style={styles.question}> {biweeklyPay} </Text>
+                <Button onPress={() => {}}>
+                    <Text>Hello</Text>
+                </Button>
             </View>
         )
     }
