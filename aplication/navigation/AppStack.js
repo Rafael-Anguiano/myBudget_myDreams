@@ -22,7 +22,7 @@ export default class AppStack extends React.Component {
           
           <Stack.Screen 
             name="Home" 
-            options={({ navigation, route }) => ({
+            options={({ navigation }) => ({
               headerShown: true, 
               headerTintColor:'white',
               headerStyle: { backgroundColor: '#051d5f'},

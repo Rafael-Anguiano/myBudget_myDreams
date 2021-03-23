@@ -13,10 +13,13 @@ export default class SavingForm extends React.Component {
             amount: undefined,
             isVisible: false,
             choosenDate: undefined,
-            color: 'gray',
+            color: 'white',
             day: new Date().getDate(),
             month: new Date().getMonth() +1,
-            year: new Date().getFullYear()
+            year: new Date().getFullYear(),
+            errorReason: false,
+            errorAmount: false,
+            errorDate: false
         };
     }
     
@@ -55,14 +58,34 @@ export default class SavingForm extends React.Component {
 
     plan(){
         const {navigation} = this.props
-        navigation.navigate('Plan', { 
-            reason:this.state.reason, 
-            amount:this.state.amount,
-            strtDay: this.state.day,
-            strtMonth: this.state.month,
-            strtYear: this.state.year,
-            choosenDate: this.state.choosenDate 
-        })
+
+        if( this.state.reason &&
+            this.state.amount &&
+            this.state.strtDay &&
+            this.state.strtMonth &&
+            this.state.strtYear &&
+            this.state.choosenDate
+        ){
+            navigation.navigate('Plan', { 
+                reason:this.state.reason, 
+                amount:this.state.amount,
+                strtDay: this.state.day,
+                strtMonth: this.state.month,
+                strtYear: this.state.year,
+                choosenDate: this.state.choosenDate 
+            })
+        }else{
+            if( !this.state.reason ){
+                this.setState({errorReason: true})
+            }
+            if( !this.state.amount ){
+                this.setState({errorAmount: true})
+            }
+            if( !this.state.strtMonth ){
+                this.setState({errorDate: true})
+            }
+        }
+        
     }
 
     render (){
@@ -71,7 +94,7 @@ export default class SavingForm extends React.Component {
                 <Text style={styles.title}> Saving Form </Text>
                 
                 <View style={{marginVertical:25}}>
-                    <Item floatingLabel style={{width:'80%'}}>
+                    <Item floatingLabel style={this.state.errorReason ? styles.emptyField : styles.field}>
                         <Label style={{padding:13, color:'white'}}> Reason: </Label>
                         <Input onChangeText={(text) => {this.changeInput(text, 'reason')}}>
                             <Text style={{color:'white'}}> </Text>
@@ -79,13 +102,14 @@ export default class SavingForm extends React.Component {
                     </Item>
                 </View>
                 
-                <View style={{marginVertical:25}}>
-                    <Item floatingLabel style={{width:'80%'}}>
+                <View style={{ marginVertical:25 }}>
+                    <Item floatingLabel style={this.state.errorAmount ? styles.emptyField : styles.field}>
                         <Label style={{padding:13, color:'white'}}> Wished Amount: </Label>
                         <Input 
                             textContentType='postalCode' 
                             maxLength={11}  
                             keyboardType='number-pad'
+                            style={{borderColor:'red'}}
                             onChangeText={(text) => {this.changeInput(text, 'amount')}}
                         >
                             <Text style={{color:'white'}}>$ </Text>
@@ -94,7 +118,13 @@ export default class SavingForm extends React.Component {
                 </View>
                 
                 <View style={{marginVertical:25}}>
-                    <Button bordered rounded light onPress={this.showPicker}>
+                    <Button 
+                        bordered 
+                        rounded 
+                        light 
+                        onPress={this.showPicker}
+                        style={this.state.errorDate ? styles.emptyButton : styles.Datebutton}
+                    >
                         <Text style={{color: this.state.color, fontSize:15, fontWeight:'bold'}}>{this.state.choosenDate ? this.state.choosenDate : "Select your Due Date" }</Text>
                     </Button>
                 </View>
@@ -142,5 +172,21 @@ const styles = StyleSheet.create({
         textAlign:'center',
         fontSize: 20,
         fontWeight: 'bold'
+    },
+    emptyField: {
+        width:'80%',
+        borderColor:'red'
+    },
+    field: {
+        width:'80%',
+        borderColor:'white'
+    },
+    emptyButton: {
+        borderColor:'red'
+    },
+    Datebutton: {
+        borderColor:'white'
     }
 });
+
+//{marginVertical:25}
