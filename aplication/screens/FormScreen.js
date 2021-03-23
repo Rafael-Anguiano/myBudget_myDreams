@@ -13,7 +13,7 @@ export default class SavingForm extends React.Component {
             amount: undefined,
             isVisible: false,
             choosenDate: undefined,
-            color: 'white',
+            color: 'black',
             strtDay: new Date().getDate(),
             strtMonth: new Date().getMonth() +1,
             strtYear: new Date().getFullYear(),
@@ -36,7 +36,7 @@ export default class SavingForm extends React.Component {
         this.setState({ 
             isVisible: false,
             choosenDate: moment(datetime).format('MM/DD/YYYY'),
-            color:'white',
+            color:'black',
             errorDate: false
         })
     }
@@ -97,24 +97,22 @@ export default class SavingForm extends React.Component {
 
                 <View style={{marginVertical:25}}>
                     <Item floatingLabel style={this.state.errorReason ? styles.emptyField : styles.field}>
-                        <Label style={{padding:13, color:'white'}}> Reason: </Label>
-                        <Input onChangeText={(text) => {this.changeInput(text, 'reason')}}>
-                            <Text style={{color:'white'}}> </Text>
-                        </Input>
+                        <Label style={styles.label}> Reason: </Label>
+                        <Input onChangeText={(text) => {this.changeInput(text, 'reason')}}/>
                     </Item>
                     { this.state.errorReason && <Text style={{color:'#9A393B', fontWeight:'bold'}}> Write a Reason to Continue </Text> }
                 </View>
                 
                 <View style={{ marginVertical:25 }}>
                     <Item floatingLabel style={this.state.errorAmount ? styles.emptyField : styles.field}>
-                        <Label style={{padding:13, color:'white'}}> Wished Amount: </Label>
+                        <Label style={styles.label}> Wished Amount: </Label>
                         <Input 
                             textContentType='postalCode' 
                             maxLength={11}  
                             keyboardType='number-pad'
                             onChangeText={(text) => {this.changeInput(text, 'amount')}}
                         >
-                            <Text style={{color:'white'}}>$ {this.state.amountVal} </Text>
+                            <Text style={{color:'black'}}>$ {this.state.amountVal} </Text>
                         </Input>
                     </Item>
                     { this.state.errorAmount && <Text style={{color:'#9A393B', fontWeight:'bold'}}> Enter your Goal Amount </Text> }
@@ -158,7 +156,7 @@ export default class SavingForm extends React.Component {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: "#596997", //#5A7DB0
+      //backgroundColor: "#596997", //#5A7DB0
       alignItems:'center',
       justifyContent:'center'
     },
@@ -171,7 +169,7 @@ const styles = StyleSheet.create({
         fontWeight: "bold"
     },
     question: {
-        color: "#FFFFFF",   //#20232a
+        color: "#000000",   //#20232a
         textAlign:'center',
         fontSize: 20,
         fontWeight: 'bold'
@@ -182,12 +180,16 @@ const styles = StyleSheet.create({
     },
     field: {
         width:'80%',
-        borderColor:'white'
+        borderColor:'black'
     },
     emptyButton: {
         borderColor:'#9A393B'
     },
     Datebutton: {
-        borderColor:'white'
+        borderColor:'black'
+    },
+    label: {
+        padding:13, 
+        color:'black'
     }
 });

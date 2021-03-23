@@ -222,7 +222,7 @@ export default class SavingPlan extends React.Component {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: "#596997", //#5A7DB0
+      //backgroundColor: "#596997", //#5A7DB0
       alignItems:'center',
       justifyContent:'center'
     },
@@ -234,7 +234,7 @@ const styles = StyleSheet.create({
         fontWeight: "bold"
     },
     question: {
-        color: "#FFFFFF",   //#20232a
+        //color: "#FFFFFF",   //#20232a
         textAlign:'center',
         fontSize: 20,
         fontWeight: 'bold'
