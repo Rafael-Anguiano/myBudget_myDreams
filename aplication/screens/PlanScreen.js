@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { StyleSheet, View} from 'react-native';
-import { Text } from 'native-base'
+import { Text, Button } from 'native-base'
 
 export default class SavingPlan extends React.Component {
     constructor(props) {
@@ -211,7 +211,7 @@ export default class SavingPlan extends React.Component {
                 <Text style={styles.question}> {amount} </Text>
                 <Text style={styles.question}> {fortnights} </Text>
                 <Text style={styles.question}> {biweeklyPay} </Text>
-                <Button onPress={() => {}}>
+                <Button rounded bordered info onPress={() => {}}>
                     <Text>Hello</Text>
                 </Button>
             </View>

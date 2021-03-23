@@ -19,7 +19,8 @@ export default class SavingForm extends React.Component {
             strtYear: new Date().getFullYear(),
             errorReason: false,
             errorAmount: false,
-            errorDate: false
+            errorDate: false,
+            amountVal: undefined
         };
     }
     
@@ -50,7 +51,9 @@ export default class SavingForm extends React.Component {
     
     changeInput(value, param){
         if(param == 'amount'){
-            this.setState({ amount: value, errorAmount: false })
+            let str = value.replace(/[^0-9]/g, "")
+            console.log("str:", str)
+            this.setState({ amount: str, amountVal: str, errorAmount: false })
         }
         if(param == 'reason'){
             this.setState({ reason: value, errorReason: false })
@@ -112,7 +115,7 @@ export default class SavingForm extends React.Component {
                             keyboardType='number-pad'
                             onChangeText={(text) => {this.changeInput(text, 'amount')}}
                         >
-                            <Text style={{color:'white'}}>$ </Text>
+                            <Text style={{color:'white'}}>$ {this.state.amountVal} </Text>
                         </Input>
                     </Item>
                     { this.state.errorAmount && <Text style={{color:'#9A393B', fontWeight:'bold'}}> Enter your Goal Amount </Text> }

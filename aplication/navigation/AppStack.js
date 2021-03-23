@@ -42,7 +42,14 @@ export default class AppStack extends React.Component {
             {props => <HomeScreen {...props} />}
           </Stack.Screen>
           
-          <Stack.Screen name="Form" options={{headerShown: false}}>
+          <Stack.Screen 
+            name="Form" 
+            options={{
+              headerShown: true, 
+              headerTintColor:'white',
+              headerStyle: { backgroundColor: '#051d5f'}
+            }}
+          >
             {props => <SavingForm {...props} />}
           </Stack.Screen>
            
