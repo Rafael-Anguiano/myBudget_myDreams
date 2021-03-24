@@ -1,7 +1,7 @@
 
 import React from 'react';
-import { StyleSheet, View} from 'react-native';
-import { Text, Button } from 'native-base'
+import { StyleSheet, TouchableOpacity, View} from 'react-native';
+import { Text, Button, Card, CardItem, Thumbnail, Left, Body } from 'native-base'
 
 export default class SavingPlan extends React.Component {
     constructor(props) {
@@ -198,18 +198,32 @@ export default class SavingPlan extends React.Component {
     }
 
     render (){
-        const {strtDay, strtMonth, strtYear, reason, amount, fortnights, biweeklyPay} = this.state
+        const {strtDay, strtMonth, strtYear, reason, amount, fortnights, biweeklyPay, choosenDate} = this.state
         const { navigation } = this.props
         return (
             <View style={styles.container}>
-                <Text style={styles.title}> New Plan: </Text>
-                <Text style={styles.question}> {strtDay} </Text>
-                <Text style={styles.question}> {strtMonth} </Text>
-                <Text style={styles.question}> {strtYear} </Text>
-                <Text style={styles.question}> {reason} </Text>
-                <Text style={styles.question}> {amount} </Text>
-                <Text style={styles.question}> {fortnights} </Text>
-                <Text style={styles.question}> {biweeklyPay} </Text>
+                <Text style={styles.title}> Select Your Plan: </Text>
+
+                <View style={{width:'90%'}}>
+                    <TouchableOpacity>
+                        <Card style={{borderColor:'#EFF1FE'}}>
+                            <CardItem>
+                                <Left>
+                                    <Thumbnail style={{height:90, width:90}} source={{uri: 'https://blog.automovilshop.com/content/3-planes-de-ahorro/giphy-2.gif'}} />
+                                    <Body>
+                                        <Text note>Plan A:<Text style={{fontWeight:'bold'}}> {reason}</Text></Text>
+                                        <Text note> Goal:<Text style={{fontWeight:'bold'}}> $ {amount}</Text></Text>
+                                        <Text note> Pays:<Text style={{fontWeight:'bold'}}> $ {biweeklyPay}</Text></Text>
+                                        <Text note> Fortnights:<Text style={{fontWeight:'bold'}}> {fortnights} </Text></Text>
+                                        <Text note> Deadline: {choosenDate}</Text>
+                                        <Text note> From: {strtMonth}/{strtDay}/{strtYear}</Text>
+                                    </Body>
+                                </Left>
+                            </CardItem>
+                        </Card>
+                    </TouchableOpacity> 
+                </View>
+                    
                 <View>
                     <Button rounded bordered info onPress={() => {
                         navigation.navigate('Home')
@@ -225,7 +239,7 @@ export default class SavingPlan extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
+      flex: 10,
       //backgroundColor: "#596997", //#5A7DB0
       alignItems:'center',
       justifyContent:'center'
@@ -233,14 +247,16 @@ const styles = StyleSheet.create({
     title: {
         borderRadius: 6,
         color: "#051d5f",   //#20232a
-        textAlign: "center",
+        //textAlign: "center",
         fontSize: 30,
         fontWeight: "bold"
     },
     question: {
-        //color: "#FFFFFF",   //#20232a
+        color: "#FFFFFF",   //#20232a
         textAlign:'center',
         fontSize: 20,
         fontWeight: 'bold'
     }
 });
+
+//#EFF0F9
