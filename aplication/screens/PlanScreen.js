@@ -35,7 +35,6 @@ export default class SavingPlan extends React.Component {
             choosenDate: this.props.route.params.choosenDate
         })
         this.setPlan()
-
         this.payments()
     }
 
@@ -200,7 +199,7 @@ export default class SavingPlan extends React.Component {
 
     render (){
         const {strtDay, strtMonth, strtYear, reason, amount, fortnights, biweeklyPay} = this.state
-
+        const { navigation } = this.props
         return (
             <View style={styles.container}>
                 <Text style={styles.title}> New Plan: </Text>
@@ -211,9 +210,14 @@ export default class SavingPlan extends React.Component {
                 <Text style={styles.question}> {amount} </Text>
                 <Text style={styles.question}> {fortnights} </Text>
                 <Text style={styles.question}> {biweeklyPay} </Text>
-                <Button rounded bordered info onPress={() => {}}>
-                    <Text>Hello</Text>
-                </Button>
+                <View>
+                    <Button rounded bordered info onPress={() => {
+                        navigation.navigate('Home')
+                    }}>
+                        <Text>Hello</Text>
+                    </Button> 
+                </View>
+                
             </View>
         )
     }
