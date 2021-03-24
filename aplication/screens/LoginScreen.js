@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     padding: 20,
     flex:1,
     paddingTop: 50,
-    backgroundColor:'#596997'
+    //backgroundColor:'#596997'
   },
   logo: {
     height: 150,
