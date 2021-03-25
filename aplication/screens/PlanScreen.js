@@ -2,7 +2,11 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, View} from 'react-native';
 import { Text, Button, Card, CardItem, Thumbnail, Left, Body } from 'native-base'
+import firestore from '@react-native-firebase/firestore';
 
+
+const userDocument = firestore().collection('Plan')
+  
 export default class SavingPlan extends React.Component {
     constructor(props) {
         super(props);
@@ -205,7 +209,7 @@ export default class SavingPlan extends React.Component {
                 <Text style={styles.title}> Select Your Plan: </Text>
 
                 <View style={{width:'90%'}}>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => {console.log(userDocument)}}>
                         <Card style={{borderColor:'#EFF1FE'}}>
                             <CardItem>
                                 <Left>
