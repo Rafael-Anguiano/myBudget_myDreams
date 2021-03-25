@@ -1,4 +1,5 @@
 # My Budget My Dreams
+> Personal Project
 
 ## Description
 Mobile app to calculate how much money I need to save every fortnight to achieve my goals, and track my saving money.
