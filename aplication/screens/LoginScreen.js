@@ -13,7 +13,8 @@ import { Text, Button, Item, Input, Label } from 'native-base'
 const LoginScreen = ({navigation}) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
-
+  const [erroEmail, setErrorEmail] = useState();
+  const [erroPassword, setErrorPassword] = useState();
   const {login} = useContext(AuthContext);
 
   return (
@@ -44,7 +45,15 @@ const LoginScreen = ({navigation}) => {
         <Button 
             rounded 
             info
-            onPress={() => login(email, password)}
+            onPress={() => {
+              if(email && password){
+                login(email, password)
+              }else{
+                alert("Please complete all fields")
+                //if(ErrorEmail == true){
+                //}
+              }
+            }}
         >
             <Text style={{color:'white', fontSize:15}}> Sign In </Text>
         </Button>
@@ -63,6 +72,8 @@ const LoginScreen = ({navigation}) => {
 };
 
 export default LoginScreen;
+
+//login(email, password)
 
 const styles = StyleSheet.create({
   container: {

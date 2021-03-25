@@ -3,9 +3,6 @@ import React from 'react';
 import { StyleSheet, TouchableOpacity, View} from 'react-native';
 import { Text, Button, Card, CardItem, Thumbnail, Left, Body } from 'native-base'
 import firestore from '@react-native-firebase/firestore';
-
-
-const userDocument = firestore().collection('Plan')
   
 export default class SavingPlan extends React.Component {
     constructor(props) {
@@ -26,6 +23,7 @@ export default class SavingPlan extends React.Component {
             fortnights: 0,
             biweeklyPay: undefined,
             calculated: false
+            //Firestore
         };
     }
 
@@ -40,6 +38,7 @@ export default class SavingPlan extends React.Component {
         })
         this.setPlan()
         this.payments()
+        this.getUser()
     }
 
     setPlan(){
@@ -201,6 +200,11 @@ export default class SavingPlan extends React.Component {
         this.setState({biweeklyPay: pays})
     }
 
+    getUser = async () => {
+        const userDocument = await firestore().collection("Users").doc('EeWe8acr59M6A9evVCzO').get()
+        console.log(userDocument)
+    }
+
     render (){
         const {strtDay, strtMonth, strtYear, reason, amount, fortnights, biweeklyPay, choosenDate} = this.state
         const { navigation } = this.props
@@ -209,7 +213,7 @@ export default class SavingPlan extends React.Component {
                 <Text style={styles.title}> Select Your Plan: </Text>
 
                 <View style={{width:'90%'}}>
-                    <TouchableOpacity onPress={() => {console.log(userDocument)}}>
+                    <TouchableOpacity>
                         <Card style={{borderColor:'#EFF1FE'}}>
                             <CardItem>
                                 <Left>
