@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View} from 'react-native';
-import { Text } from 'native-base'
+import { Text, Button, Item, Input, Label } from 'native-base'
 
 export default class HomeScreen extends React.Component {
     constructor(props) {
@@ -25,9 +25,21 @@ export default class HomeScreen extends React.Component {
     }
 
     render (){    
+        const { navigation } = this.props
         return (
             <View style={styles.container}>
                 <Text style={styles.title}> Home Screen </Text>
+                <View>
+                    <Button 
+                        rounded
+                        style={{backgroundColor: '#051d5f'}}
+                        onPress={() => {
+                            navigation.navigate('Form2')
+                        }}
+                    >
+                        <Text style={{color:'white', fontSize:15}}> Saving Plan </Text>
+                    </Button>
+                </View>
                 <Text style={styles.question}> Hello World </Text>
             </View>
         )

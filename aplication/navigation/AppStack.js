@@ -12,6 +12,8 @@ import SavingPlan from '../screens/PlanScreen'
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from '../screens/HomeScreen';
 import {Button, Text, Icon} from 'native-base'
+import SavingForm2 from '../screens/FormScreen2';
+import SavingPlan2 from '../screens/PlanScreen2';
 
 const Stack = createStackNavigator();
 
@@ -62,6 +64,28 @@ export default class AppStack extends React.Component {
             }}
           >
             {props => <SavingPlan {...props} />}
+          </Stack.Screen>
+
+          <Stack.Screen 
+            name="Form2" 
+            options={{
+              headerShown: true, 
+              headerTintColor:'white',
+              headerStyle: { backgroundColor: '#051d5f'}
+            }}
+          >
+            {props => <SavingForm2 {...props} />}
+          </Stack.Screen>
+
+          <Stack.Screen 
+            name="Plan2" 
+            options={{
+              headerShown: true, 
+              headerTintColor:'white',
+              headerStyle: { backgroundColor: '#051d5f'}
+            }}
+          >
+            {props => <SavingPlan2 {...props} />}
           </Stack.Screen>
 
         </Stack.Navigator>
